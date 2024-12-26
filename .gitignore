@@ -49,6 +49,10 @@ coverage.xml
 .pytest_cache/
 cover/
 
+# Database files (SQLModel / SQLite)
+db.sqlite3
+db.sqlite3-journal
+
 # Translations
 *.mo
 *.pot
@@ -56,8 +60,6 @@ cover/
 # Django stuff:
 *.log
 local_settings.py
-db.sqlite3
-db.sqlite3-journal
 
 # Flask stuff:
 instance/

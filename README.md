@@ -15,6 +15,7 @@ Create a minimal Python-based engine to generate accurate model railway track, f
 ## MVP PLAN:
 
 - Build the MVP using **FastAPI** for its performance, API-first design, and type validation capabilities.
+- Transitioned to **SQLModel** for type-safe and simplified database interactions.
 - Create an admin panel using FastAPI-compatible tools or a lightweight database editor.
 - Focus on bullhead rail based on REA standards.
 - Include chairs as part of the 3D model, as the rail sits within the chairs.
@@ -38,7 +39,7 @@ Create a minimal Python-based engine to generate accurate model railway track, f
 ## REFACTORING OUTLINE:
 
 - **Separation of Concerns:** Replace global variables with structured classes (e.g., `TrackSettings`).
-- **Database Integration:** Replace hardcoded values with dynamic retrieval from the SQLite database for better configurability and scalability.
+- **Database Integration:** Replace hardcoded values with dynamic retrieval from the SQLModel database for better configurability and scalability.
 - **Geometry/Math Decoupling:** Keep core logic in a separate module, independent of UI/CLI.
 - **Native 3D Export:** Leverage Python CAD libraries to directly generate STL geometry.
 - **Modular Design:** Ensure the application is modular to support the addition of advanced workflows (e.g., mesh repair and inspection) in the future.
@@ -60,7 +61,7 @@ To comply with GNU GPLv3, include prominent attribution in the code comments and
 
 ## END STATE:
 
-A FastAPI-based, modular, and maintainable track design engine that generates STL files for REA-standard bullhead rail track, including chairs and timbers, supported by a SQLite database for flexible data management. The rail itself is intended to be added manually by the user after 3D printing.
+A FastAPI-based, modular, and maintainable track design engine that generates STL files for REA-standard bullhead rail track, including chairs and timbers, supported by an SQLModel-based SQLite database for flexible data management. The rail itself is intended to be added manually by the user after 3D printing.
 
 ## REFERENCE:
 https://github.com/Richard-Gnitnub/Templot5/blob/main/dxf_unit.pas
@@ -69,6 +70,7 @@ https://github.com/Richard-Gnitnub/Templot5/blob/main/dxf_unit.pas
 
 - Develop using Python 3.12.3 (latest version as of October 2023).
 - Attribution to Martin Wynne is essential to comply with GNU GPLv3.
+
 
 ---
 ## Core Application Functionality (MVP)

@@ -1,22 +1,24 @@
 # TODO List
 
 ## 1. Project Setup
-- [x] Set up the project directory structure for a **FastAPI** application.
+- [ ] Set up the project directory structure for a **FastAPI** application.  
+  _**[Revisit]** Ensure structure aligns with SQLModel integration and includes `templates/` and `static/` folders._
 - [x] Create a Python virtual environment (`venv` or `conda`) for isolated development.
 - [x] Install FastAPI and essential dependencies:
   - `fastapi`
   - `uvicorn[standard]` (for running the FastAPI app)
-  - `sqlalchemy` (for database interactions)
+  - ~~`sqlalchemy`~~  
+  - `sqlmodel` (replacing SQLAlchemy for database interactions)
   - `pydantic` (for validation and settings)
   - `cadquery` (for geometry generation)
   - `numpy`
   - `pytest`
 - [x] Initialise a Git repository and push to GitHub using the desktop app.
 - [x] Add a `.gitignore` file (e.g., ignore `__pycache__`, `.DS_Store`, virtual environments, STL files, etc.).
-- [x] Create a basic FastAPI project structure:
-  - `track_app/` for core logic.
-  - `templates/` and `static/` for web interface assets (if needed).
-- [x] Set up Docker for local deployment:
+- [x] Create a basic FastAPI project structure:  
+  _**[Revisit]** Include separation of `routes`, `models`, `utils`, `templates/`, and `static/` folders._
+- [x] Set up Docker for local deployment:  
+  _**[Revisit]** Verify compatibility with SQLModel._
   - Create a `Dockerfile` to containerize the FastAPI application.
   - Create a `docker-compose.yml` file to manage dependencies and services.
   - Verify the application runs successfully in Docker.
@@ -26,11 +28,12 @@
 ## 2. Core Functionality
 
 ### a. Database Models
-- [ ] Define models for track components in `models.py`:
+- [ ] Define models for track components in `models.py` using **SQLModel**:
   - Straight Track: Include length and other parameters.
+  - Timbers: Include position, width, and thickness.
   - Chairs: Include dimensions and types (minimal for MVP).
   - Rails: Placeholder for future iterations.
-- [ ] Use SQLAlchemy to implement the database.
+- [ ] Use **SQLModel** to implement the database schema.
 - [ ] Create migrations and populate the database with example data using Alembic.
 
 ### b. Geometry and STL Export
