@@ -28,12 +28,12 @@
 ## 2. Core Functionality
 
 ### a. Database Models
-- [ ] Define models for track components in `models.py` using **SQLModel**:
+- [x] Define models for track components in `models.py` using **SQLModel**:
   - Straight Track: Include length and other parameters.
   - Timbers: Include position, width, and thickness.
   - Chairs: Include dimensions and types (minimal for MVP).
   - Rails: Placeholder for future iterations.
-- [ ] Use **SQLModel** to implement the database schema.
+- [x] Use **SQLModel** to implement the database schema.
 - [ ] Create migrations and populate the database with example data using Alembic.
 
 ### b. Geometry and STL Export

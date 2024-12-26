@@ -1,19 +1,19 @@
-from fastapi import APIRouter
-from pydantic import BaseModel
-from fastapi import FastAPI
-from .routes import router
-from database.database import SessionLocal
+from fastapi import APIRouter, HTTPException, Depends
+from sqlmodel import Session, select
+from app.database import get_session
+from app.models import StraightTrack
 
 router = APIRouter()
 
-class TrackParams(BaseModel):
-    length: float
-    width: float
+@router.post("/", response_model=StraightTrack)
+def create_straight_track(straight_track: StraightTrack, session: Session = Depends(get_session)):
+    session.add(straight_track)
+    session.commit()
+    session.refresh(straight_track)
+    return straight_track
 
-@router.post("/generate-track")
-async def generate_track(params: TrackParams):
-    return {"message": f"Track generated with length {params.length} and width {params.width}"}
-
-
-app = FastAPI()
-app.include_router(router)
+@router.get("/", response_model=list[StraightTrack])
+def read_straight_tracks(session: Session = Depends(get_session)):
+    statement = select(StraightTrack)
+    results = session.exec(statement).all()
+    return results

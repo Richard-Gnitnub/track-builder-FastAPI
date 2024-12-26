@@ -1,31 +1,25 @@
-from sqlmodel import SQLModel, Field
-from typing import Optional
-from datetime import datetime
+from sqlmodel import SQLModel, Field, Relationship
+from typing import List, Optional
 
-class Track(SQLModel, table=True):
+class Rail(SQLModel, table=True):
+    __tablename__ = "rails"
     id: Optional[int] = Field(default=None, primary_key=True)
-    name: str = Field(index=True)  # Track identifier
-    length: float  # Length of the track in mm
-    created_at: datetime = Field(default_factory=datetime.utcnow)
-
-class Timber(SQLModel, table=True):
-    id: Optional[int] = Field(default=None, primary_key=True)
-    track_id: int = Field(foreign_key="track.id")  # Foreign key to Track
-    position: float  # Position along the track
-    width: float  # Timber width
-    thickness: float  # Timber thickness
-    created_at: datetime = Field(default_factory=datetime.utcnow)
+    profile: str = Field(..., description="Rail profile (e.g., BS-95R)")
+    length: float = Field(..., description="Length of the rail in mm")
+    scale: str = Field(..., description="Scale of the rail, e.g., OO-BF")
 
 class Chair(SQLModel, table=True):
+    __tablename__ = "chairs"
     id: Optional[int] = Field(default=None, primary_key=True)
-    timber_id: int = Field(foreign_key="timber.id")  # Foreign key to Timber
-    type: str  # Chair type
-    position: float  # Position relative to the timber
-    created_at: datetime = Field(default_factory=datetime.utcnow)
+    slot_depth: float = Field(..., description="Depth of the chair slot for the rail foot")
+    slot_width: float = Field(..., description="Width of the chair slot for the rail foot")
+    tolerance: float = Field(..., description="Assembly tolerance for the chair slot")
+    rail_id: Optional[int] = Field(default=None, foreign_key="rails.id")
 
-class STLFile(SQLModel, table=True):
+class StraightTrack(SQLModel, table=True):
+    __tablename__ = "straight_tracks"
     id: Optional[int] = Field(default=None, primary_key=True)
-    track_id: int = Field(foreign_key="track.id")  # Foreign key to Track
-    filename: str  # STL file name
-    is_valid: bool = Field(default=True)  # Indicates if the STL is valid
-    created_at: datetime = Field(default_factory=datetime.utcnow)
+    length: float = Field(..., description="Total length of the track in mm")
+    chair_spacing: float = Field(..., description="Spacing between chairs on the track")
+    sleeper_spacing: float = Field(..., description="Spacing between sleepers on the track")
+    rail_id: Optional[int] = Field(default=None, foreign_key="rails.id")
