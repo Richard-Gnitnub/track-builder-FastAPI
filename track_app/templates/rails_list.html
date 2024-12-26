@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Manage Rails</h1>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Profile</th>
+            <th>Length (mm)</th>
+            <th>Scale</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for rail in rails %}
+        <tr id="rail-{{ rail.id }}">
+            <td>{{ rail.id }}</td>
+            <td>{{ rail.profile }}</td>
+            <td>{{ rail.length }}</td>
+            <td>{{ rail.scale }}</td>
+            <td>
+                <button hx-get="/admin/rails/{{ rail.id }}/edit" hx-target="#rail-{{ rail.id }}" hx-swap="outerHTML">Edit</button>
+                <button hx-delete="/admin/rails/{{ rail.id }}" hx-target="#rail-{{ rail.id }}" hx-swap="delete">Delete</button>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<button hx-get="/admin/rails/new" hx-target="body" hx-swap="innerHTML">Add New Rail</button>
+{% endblock %}
