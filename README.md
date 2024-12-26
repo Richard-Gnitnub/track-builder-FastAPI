@@ -63,14 +63,14 @@ To comply with GNU GPLv3, include prominent attribution in the code comments and
 
 A FastAPI-based, modular, and maintainable track design engine that generates STL files for REA-standard bullhead rail track, including chairs and timbers, supported by an SQLModel-based SQLite database for flexible data management. The rail itself is intended to be added manually by the user after 3D printing.
 
-## REFERENCE:
+## REFERENCES:
 https://github.com/Richard-Gnitnub/Templot5/blob/main/dxf_unit.pas
+https://fastapi.tiangolo.com/reference/templating/
 
 ## NOTES:
 
 - Develop using Python 3.12.3 (latest version as of October 2023).
 - Attribution to Martin Wynne is essential to comply with GNU GPLv3.
-
 
 ---
 ## Core Application Functionality (MVP)
