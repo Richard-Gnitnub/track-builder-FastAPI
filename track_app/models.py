@@ -31,3 +31,9 @@ class Timber(SQLModel, table=True):
     width: float = Field(..., description="Width of the timber in mm")
     thickness: float = Field(..., description="Thickness of the timber in mm")
     material: str = Field(..., description="Material type of the timber")
+
+class AdminUser(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    username: str = Field(..., unique=True, index=True)
+    password: str = Field(...)
+    is_active: bool = Field(default=True)
