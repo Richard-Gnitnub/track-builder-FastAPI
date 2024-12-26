@@ -136,7 +136,7 @@ flowchart TD
 ```
 project/
 │
-├── app/
+├── track-app/
 │   ├── __init__.py          # Makes `app` a Python package
 │   ├── main.py              # FastAPI app entry point
 │   ├── database.py          # Database connection and session management
