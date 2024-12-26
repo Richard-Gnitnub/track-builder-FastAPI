@@ -135,43 +135,34 @@ flowchart TD
 
 ```
 project/
-│
-├── track-app/
-│   ├── __init__.py          # Makes `app` a Python package
-│   ├── main.py              # FastAPI app entry point
-│   ├── database.py          # Database connection and session management
-│   ├── models.py            # SQLModel database models
-│   ├── routes/
-│   │   ├── __init__.py      # Makes `routes` a Python package
-│   │   ├── track_routes.py  # Routes for Track management
-│   │   ├── timber_routes.py # Routes for Timber management
-│   │   ├── chair_routes.py  # Routes for Chair management
-│   │   ├── stl_routes.py    # Routes for STLFile management
-│   ├── utils/               # Utility functions (optional)
-│   │   ├── __init__.py
-│   │   ├── validators.py    # Custom validation logic
-│   ├── static/              # Static files (CSS, JS, images, etc.)
-│   │   ├── css/             # CSS files
-│   │   ├── js/              # JavaScript files
-│   │   ├── img/             # Images
-│   ├── templates/           # HTML templates for Jinja2 rendering
-│       ├── base.html        # Base template (optional)
-│       ├── track_form.html  # Example form for tracks
-│       ├── result.html      # Example result display page
-│
-├── migrations/              # Alembic migrations (optional)
-│
-├── tests/                   # Unit tests
+├── track_app/
 │   ├── __init__.py
-│   ├── test_routes.py
-│   ├── test_models.py
-│
+│   ├── main.py              # FastAPI entry point
+│   ├── database.py          # Database connection and session
+│   ├── models.py            # Database models (or split into models/)
+│   ├── routes/              # Modular route files
+│   │   ├── rail_routes.py
+│   │   ├── chair_routes.py
+│   │   ├── track_routes.py
+│   │   ├── timber_routes.py
+│   │   ├── stl_routes.py
+│   ├── static/              # Static assets
+│   │   ├── css/
+│   │   ├── js/
+│   │   ├── img/
+│   ├── templates/           # HTML templates
+│   │   ├── base.html
+│   │   ├── admin_dashboard.html
+│   │   ├── rails_list.html
+│   │   ├── rails_form.html
+│   │   ├── chairs_list.html
+│   │   ├── chairs_form.html
+│   │   ├── ...
+├── requirements.txt         # Project dependencies
+├── README.md                # Documentation
 ├── Dockerfile               # Docker configuration
-├── docker-compose.yml       # Docker Compose file
-├── requirements.txt         # Python dependencies
-└── README.md                # Project documentation
-
-
+├── docker-compose.yml       # Docker Compose
+└── .gitignore               # Git ignore file
 
 ```
 ---
