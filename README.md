@@ -134,23 +134,42 @@ flowchart TD
 ```
 project/
 │
-├── track_app/           # Core application logic
-│   ├── __init__.py      # Application initialization
-│   ├── models.py        # SQLAlchemy models
-│   ├── routes.py        # FastAPI routes
-│   ├── geometry.py      # Geometry logic for track generation
-│   ├── templates/       # (Optional) HTML templates for web interface
-│   ├── static/          # (Optional) Static files for web interface
+├── app/
+│   ├── __init__.py          # Makes `app` a Python package
+│   ├── main.py              # FastAPI app entry point
+│   ├── database.py          # Database connection and session management
+│   ├── models.py            # SQLModel database models
+│   ├── routes/
+│   │   ├── __init__.py      # Makes `routes` a Python package
+│   │   ├── track_routes.py  # Routes for Track management
+│   │   ├── timber_routes.py # Routes for Timber management
+│   │   ├── chair_routes.py  # Routes for Chair management
+│   │   ├── stl_routes.py    # Routes for STLFile management
+│   ├── utils/               # Utility functions (optional)
+│   │   ├── __init__.py
+│   │   ├── validators.py    # Custom validation logic
+│   ├── static/              # Static files (CSS, JS, images, etc.)
+│   │   ├── css/             # CSS files
+│   │   ├── js/              # JavaScript files
+│   │   ├── img/             # Images
+│   ├── templates/           # HTML templates for Jinja2 rendering
+│       ├── base.html        # Base template (optional)
+│       ├── track_form.html  # Example form for tracks
+│       ├── result.html      # Example result display page
 │
-├── database/            # Database-related files
-│   ├── database.py      # SQLAlchemy engine and session setup
-│   ├── migrations/      # Alembic migrations
+├── migrations/              # Alembic migrations (optional)
 │
-├── tests/               # Unit and integration tests
-├── Dockerfile           # Docker configuration
-├── docker-compose.yml   # Docker Compose setup
-├── requirements.txt     # Python dependencies
-└── README.md            # Project documentation
+├── tests/                   # Unit tests
+│   ├── __init__.py
+│   ├── test_routes.py
+│   ├── test_models.py
+│
+├── Dockerfile               # Docker configuration
+├── docker-compose.yml       # Docker Compose file
+├── requirements.txt         # Python dependencies
+└── README.md                # Project documentation
+
+
 
 ```
 ---

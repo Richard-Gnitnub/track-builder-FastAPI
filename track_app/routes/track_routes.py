@@ -2,6 +2,7 @@ from fastapi import APIRouter
 from pydantic import BaseModel
 from fastapi import FastAPI
 from .routes import router
+from database.database import SessionLocal
 
 router = APIRouter()
 

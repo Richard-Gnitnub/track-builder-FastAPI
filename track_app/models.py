@@ -1,31 +1,31 @@
-from sqlalchemy import Column, Integer, String, Float, ForeignKey
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship
+from sqlmodel import SQLModel, Field
+from typing import Optional
+from datetime import datetime
 
-Base = declarative_base()
+class Track(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    name: str = Field(index=True)  # Track identifier
+    length: float  # Length of the track in mm
+    created_at: datetime = Field(default_factory=datetime.utcnow)
 
-class Rail(Base):
-    __tablename__ = 'rails'
-    id = Column(Integer, primary_key=True)
-    profile = Column(String, nullable=False)  # e.g., BS-95R
-    length = Column(Float, nullable=False)  # Rail length in mm
-    scale = Column(String, nullable=False)  # Scale, e.g., OO-BF
+class Timber(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    track_id: int = Field(foreign_key="track.id")  # Foreign key to Track
+    position: float  # Position along the track
+    width: float  # Timber width
+    thickness: float  # Timber thickness
+    created_at: datetime = Field(default_factory=datetime.utcnow)
 
-class Chair(Base):
-    __tablename__ = 'chairs'
-    id = Column(Integer, primary_key=True)
-    slot_depth = Column(Float, nullable=False)
-    slot_width = Column(Float, nullable=False)
-    tolerance = Column(Float, nullable=False)
-    rail_id = Column(Integer, ForeignKey('rails.id'))
-    rail = relationship("Rail", back_populates="chairs")
+class Chair(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    timber_id: int = Field(foreign_key="timber.id")  # Foreign key to Timber
+    type: str  # Chair type
+    position: float  # Position relative to the timber
+    created_at: datetime = Field(default_factory=datetime.utcnow)
 
-class StraightTrack(Base):
-    __tablename__ = 'straight_tracks'
-    id = Column(Integer, primary_key=True)
-    length = Column(Float, nullable=False)
-    chair_spacing = Column(Float, nullable=False)
-    sleeper_spacing = Column(Float, nullable=False)
-    rail_id = Column(Integer, ForeignKey('rails.id'))
-    rail = relationship("Rail")
-
+class STLFile(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    track_id: int = Field(foreign_key="track.id")  # Foreign key to Track
+    filename: str  # STL file name
+    is_valid: bool = Field(default=True)  # Indicates if the STL is valid
+    created_at: datetime = Field(default_factory=datetime.utcnow)
