@@ -134,20 +134,23 @@ flowchart TD
 ```
 project/
 │
-├── track_app/
-│   ├── __init__.py    # Application initialization
-│   ├── models.py      # Database models
-│   ├── routes.py      # Application routes
-│   ├── geometry.py    # Track geometry logic
-│   ├── templates/     # HTML templates (if needed)
-│   ├── static/        # Static files (if needed)
+├── track_app/           # Core application logic
+│   ├── __init__.py      # Application initialization
+│   ├── models.py        # SQLAlchemy models
+│   ├── routes.py        # FastAPI routes
+│   ├── geometry.py      # Geometry logic for track generation
+│   ├── templates/       # (Optional) HTML templates for web interface
+│   ├── static/          # (Optional) Static files for web interface
 │
-├── migrations/        # Database migration files
-├── tests/             # Unit tests
-├── Dockerfile         # Docker container configuration
-├── docker-compose.yml # Docker Compose setup
-├── requirements.txt   # Python dependencies
-└── README.md          # Project documentation
+├── database/            # Database-related files
+│   ├── database.py      # SQLAlchemy engine and session setup
+│   ├── migrations/      # Alembic migrations
+│
+├── tests/               # Unit and integration tests
+├── Dockerfile           # Docker configuration
+├── docker-compose.yml   # Docker Compose setup
+├── requirements.txt     # Python dependencies
+└── README.md            # Project documentation
 
 ```
 ---
