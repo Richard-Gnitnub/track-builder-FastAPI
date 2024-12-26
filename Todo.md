@@ -1,7 +1,7 @@
 # TODO List
 
 ## 1. Project Setup
-- [ ] Set up the project directory structure for a **FastAPI** application.  
+- [x] Set up the project directory structure for a **FastAPI** application.  
   _**[Revisit]** Ensure structure aligns with SQLModel integration and includes `templates/` and `static/` folders._
 - [x] Create a Python virtual environment (`venv` or `conda`) for isolated development.
 - [x] Install FastAPI and essential dependencies:
