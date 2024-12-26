@@ -9,7 +9,6 @@ from track_app.routes.timber_routes import router as timber_router
 from track_app.routes.stl_routes import router as stl_router
 from track_app.models import AdminUser, Rail, Chair, StraightTrack, Timber
 from track_app.database import engine  # Your database connection
-from redis.asyncio import Redis  # Replace aioredis import
 
 
 app = FastAPI()
