@@ -28,3 +28,8 @@ def admin_dashboard(request: Request):
 @app.get("/")
 def read_root():
     return {"message": "Welcome to the Lightweight Track Builder API"}
+
+#health check
+@app.get("/health", response_class=HTMLResponse)
+def health_check():
+    return {"status": "healthy"}
