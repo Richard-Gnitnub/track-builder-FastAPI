@@ -23,3 +23,11 @@ class StraightTrack(SQLModel, table=True):
     chair_spacing: float = Field(..., description="Spacing between chairs on the track")
     sleeper_spacing: float = Field(..., description="Spacing between sleepers on the track")
     rail_id: Optional[int] = Field(default=None, foreign_key="rails.id")
+
+class Timber(SQLModel, table=True):
+    __tablename__ = "timbers"
+    id: Optional[int] = Field(default=None, primary_key=True)
+    position: float = Field(..., description="Position of the timber along the track")
+    width: float = Field(..., description="Width of the timber in mm")
+    thickness: float = Field(..., description="Thickness of the timber in mm")
+    material: str = Field(..., description="Material type of the timber")
