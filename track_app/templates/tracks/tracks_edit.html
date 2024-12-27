@@ -1,0 +1,14 @@
+<form hx-post="/admin/tracks/{{ track.id }}" hx-target="#track-{{ track.id }}" hx-swap="outerHTML">
+    <td>{{ track.id }}</td>
+    <td><input type="number" name="total_length" value="{{ track.total_length }}" required></td>
+    <td><input type="number" name="timber_spacing" value="{{ track.timber_spacing }}" required></td>
+    <td>
+        <select name="chair_alignment" required>
+            <option value="opposite" {% if track.chair_alignment == "opposite" %}selected{% endif %}>Opposite</option>
+            <option value="staggered" {% if track.chair_alignment == "staggered" %}selected{% endif %}>Staggered</option>
+        </select>
+    </td>
+    <td>
+        <button type="submit" class="btn btn-sm btn-primary">Save</button>
+    </td>
+</form>

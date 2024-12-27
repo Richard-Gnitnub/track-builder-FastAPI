@@ -1,0 +1,36 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Total Length (mm)</th>
+            <th>Timber Spacing (mm)</th>
+            <th>Chair Alignment</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for track in tracks %}
+        <tr id="track-{{ track.id }}">
+            <td>{{ track.id }}</td>
+            <td>
+                <span hx-get="/admin/tracks/{{ track.id }}/edit" hx-target="#track-length-{{ track.id }}" hx-swap="outerHTML">
+                    {{ track.total_length }}
+                </span>
+            </td>
+            <td>
+                <span hx-get="/admin/tracks/{{ track.id }}/edit" hx-target="#track-spacing-{{ track.id }}" hx-swap="outerHTML">
+                    {{ track.timber_spacing }}
+                </span>
+            </td>
+            <td>
+                <span hx-get="/admin/tracks/{{ track.id }}/edit" hx-target="#track-alignment-{{ track.id }}" hx-swap="outerHTML">
+                    {{ track.chair_alignment }}
+                </span>
+            </td>
+            <td>
+                <button class="btn btn-sm btn-danger" hx-delete="/admin/tracks/{{ track.id }}" hx-target="#track-{{ track.id }}" hx-swap="delete">Delete</button>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

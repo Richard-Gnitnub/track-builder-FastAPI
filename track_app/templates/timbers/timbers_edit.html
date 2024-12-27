@@ -1,0 +1,12 @@
+<form hx-post="/admin/timbers/{{ timber.id }}" hx-target="#timber-{{ timber.id }}" hx-swap="outerHTML">
+    <td>{{ timber.id }}</td>
+    <td><input type="number" name="length" value="{{ timber.length }}" required></td>
+    <td><input type="number" name="width" value="{{ timber.width }}" required></td>
+    <td><input type="number" name="depth" value="{{ timber.depth }}" required></td>
+    <td><input type="number" name="flange_width" value="{{ timber.flange_width }}" required></td>
+    <td><input type="number" name="flange_depth" value="{{ timber.flange_depth }}" required></td>
+    <td><input type="number" name="position" value="{{ timber.position }}" required></td>
+    <td>
+        <button type="submit" class="btn btn-sm btn-primary">Save</button>
+    </td>
+</form>

@@ -1,0 +1,54 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Length (mm)</th>
+            <th>Width (mm)</th>
+            <th>Depth (mm)</th>
+            <th>Flange Width (mm)</th>
+            <th>Flange Depth (mm)</th>
+            <th>Position</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for timber in timbers %}
+        <tr id="timber-{{ timber.id }}">
+            <td>{{ timber.id }}</td>
+            <td>
+                <span hx-get="/admin/timbers/{{ timber.id }}/edit" hx-target="#timber-length-{{ timber.id }}" hx-swap="outerHTML">
+                    {{ timber.length }}
+                </span>
+            </td>
+            <td>
+                <span hx-get="/admin/timbers/{{ timber.id }}/edit" hx-target="#timber-width-{{ timber.id }}" hx-swap="outerHTML">
+                    {{ timber.width }}
+                </span>
+            </td>
+            <td>
+                <span hx-get="/admin/timbers/{{ timber.id }}/edit" hx-target="#timber-depth-{{ timber.id }}" hx-swap="outerHTML">
+                    {{ timber.depth }}
+                </span>
+            </td>
+            <td>
+                <span hx-get="/admin/timbers/{{ timber.id }}/edit" hx-target="#timber-flange-width-{{ timber.id }}" hx-swap="outerHTML">
+                    {{ timber.flange_width }}
+                </span>
+            </td>
+            <td>
+                <span hx-get="/admin/timbers/{{ timber.id }}/edit" hx-target="#timber-flange-depth-{{ timber.id }}" hx-swap="outerHTML">
+                    {{ timber.flange_depth }}
+                </span>
+            </td>
+            <td>
+                <span hx-get="/admin/timbers/{{ timber.id }}/edit" hx-target="#timber-position-{{ timber.id }}" hx-swap="outerHTML">
+                    {{ timber.position }}
+                </span>
+            </td>
+            <td>
+                <button class="btn btn-sm btn-danger" hx-delete="/admin/timbers/{{ timber.id }}" hx-target="#timber-{{ timber.id }}" hx-swap="delete">Delete</button>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
