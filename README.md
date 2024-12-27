@@ -4,73 +4,107 @@ Lightweight Track Builder (Rewrite of Templot by Martin Wynne)
 
 ## GOAL:
 
-Create a minimal Python-based engine to generate accurate model railway track, focusing on straight track and simple turnouts for 3D printing (STL export). The project will adhere to bullhead rail standards based on REA specifications, with chairs and timbers included. This MVP will serve as the foundation for a more comprehensive track design tool.
+Develop a lightweight Python-based application to design accurate model railway track for 3D printing, focusing on **COT (Chairs on Timbers) track**. This MVP will prioritise straight track generation adhering to bullhead rail standards based on REA specifications. The generated STL files will include timbers with integrated chairs, and the rail will be manually added post-printing. The MVP serves as a foundation for a modular and extensible track design tool.
+
+---
 
 ## KEY INSIGHTS:
 
-- Legacy dxf_unit.pas (Pascal) code is pivotal, containing both 2D DXF and 3D STL export logic.
-- The codebase is monolithic, heavily reliant on global variables for rail/sleeper geometry, tolerances, and more.
-- Decades of incremental updates have resulted in intertwined 2D and 3D logic under "DXF" routines.
+- Legacy `dxf_unit.pas` (Pascal) code is pivotal, containing the original 2D DXF and 3D STL export logic.
+- The codebase’s monolithic design relies heavily on global variables for geometry, tolerances, and track parameters.
+- Decades of incremental updates have resulted in intertwined 2D and 3D logic, complicating direct porting.
+- **COT Track Discoveries**:
+  - **Integrated Chairs and Timbers**: COT tracks combine chairs and timbers into a single printable unit.
+  - **Chair Data**: Groove dimensions (width, depth, tolerance) are crucial for rail fit.
+  - **Timber Data**: Includes flange dimensions for stability during FDM printing.
+  - **Alignment Patterns**: Chairs can be aligned symmetrically or staggered based on track design.
+
+---
 
 ## MVP PLAN:
 
-- Build the MVP using **FastAPI** for its performance, API-first design, and type validation capabilities.
-- Transitioned to **SQLModel** for type-safe and simplified database interactions.
-- Create an admin panel using FastAPI-compatible tools or a lightweight database editor.
-- Focus on bullhead rail based on REA standards.
-- Include chairs as part of the 3D model, as the rail sits within the chairs.
-- Design track as a combination of:
-  - **Timbers:** Base structure for the track.
-  - **Chairs:** Components to hold the rail.
-  - **Rail:** Added manually by the user post-3D printing.
-- Implement functionality to generate a straight piece of track to the user’s specified length.
-- Use Python CAD libraries (e.g., CadQuery) for STL file generation.
-- Introduce a SQLite database to remove hardcoded data, enabling flexible storage of track parameters and configurations.
-- **Validate STL file integrity** using lightweight checks (e.g., watertightness) and provide basic feedback if validation fails.
-- Note: **Mesh inspection and repair** is not included in the MVP but is planned as a future enhancement.
+1. **Framework**:
+   - Build the MVP using **FastAPI** for its performance, API-first design, and type validation capabilities.
+   - Use **SQLModel** for database interactions, ensuring type safety and simplicity.
+
+2. **Core Features**:
+   - **STL Generation**:
+     - Parameterised straight track geometry.
+     - Includes chairs with grooves for rail placement and timbers with optional flanges.
+   - **Database Integration**:
+     - Use SQLite to store dynamic track configurations and eliminate hardcoded values.
+   - **Admin Panel**:
+     - Provide CRUD operations for timbers, chairs, and track settings via a user-friendly web interface.
+
+3. **Design Elements**:
+   - **Timbers**: Base structure with configurable dimensions (length, width, depth, flanges).
+   - **Chairs**: Integrated into timbers with configurable groove dimensions for rail fit.
+   - **Rails**: Added manually by the user after 3D printing.
+
+4. **Validation**:
+   - Ensure STL files are watertight and structurally sound.
+   - Provide error feedback for invalid configurations or failed exports.
+
+5. **Excluded from MVP**:
+   - **Curved Tracks** and **Turnouts**: Deferred for future enhancements.
+   - **Mesh Inspection and Repair**: Planned for post-MVP development.
+
+---
 
 ## WORKING ENVIRONMENT REQUIREMENTS:
 
-- The project will be developed using VS Code on a Windows laptop.
-- GitHub Desktop will be used for version management.
-- Instructions will provide explicit steps, including details on where files should be placed within the directory structure to ensure clarity and avoid ambiguity.
-- CLI will be windows Command Prompt.
+- Development will use **VS Code** on a Windows machine.
+- **GitHub Desktop** will manage version control.
+- The CLI will use **Command Prompt** on Windows.
+- Explicit instructions will ensure clarity for contributors, detailing file placements and commands.
+
+---
 
 ## REFACTORING OUTLINE:
 
-- **Separation of Concerns:** Replace global variables with structured classes (e.g., `TrackSettings`).
-- **Database Integration:** Replace hardcoded values with dynamic retrieval from the SQLModel database for better configurability and scalability.
-- **Geometry/Math Decoupling:** Keep core logic in a separate module, independent of UI/CLI.
-- **Native 3D Export:** Leverage Python CAD libraries to directly generate STL geometry.
-- **Modular Design:** Ensure the application is modular to support the addition of advanced workflows (e.g., mesh repair and inspection) in the future.
-- **Track Element Modularity:** Ensure timbers, chairs, and rail are modularly designed for reusability and scalability.
+- **Separation of Concerns**: Replace global variables with structured classes (e.g., `TrackSettings`) for better modularity.
+- **Database Integration**: Dynamically retrieve values using SQLModel to allow flexibility and scalability.
+- **Decoupled Geometry**: Keep geometry logic in standalone modules, independent of the UI.
+- **3D Export**: Leverage CadQuery for generating native STL files directly.
+- **Modular Design**: Ensure timbers, chairs, and tracks are modularly designed for reusability and scalability.
+
+---
 
 ## ATTRIBUTION:
 To comply with GNU GPLv3, include prominent attribution in the code comments and documentation to Martin Wynne for his original work on Templot.
 
+---
+
 ## FUTURE ENHANCEMENTS:
 
-- Add more track types, turnout angles, and advanced details (e.g., snap-fit designs) once the MVP is stable.
-- Expand REA-based models with additional variations and regional standards.
-- Introduce an **optional mesh inspection and repair workflow**, allowing users to:
-  - Inspect STL files for issues (e.g., non-watertight surfaces, inverted normals).
-  - Generate a report detailing identified problems.
-  - Apply automated repairs or skip repairs based on user preference.
-- Include user-selectable parameters, such as **checkboxes** to skip inspection or repair for external workflows.
-- Reintroduce specialized features like chaired track and snap-fit designs after validating the core engine.
+1. **Advanced Track Designs**:
+   - Add curved tracks, turnout angles, and complex geometries (e.g., snap-fit designs).
+2. **Enhanced Validation**:
+   - Include STL inspection workflows for watertightness, inverted normals, and repair options.
+3. **Programmatic Access**:
+   - Introduce a REST API for automated track generation and configuration.
+4. **Cloud Deployment**:
+   - Plan for hosting and deploying the application on cloud platforms (e.g., AWS, DigitalOcean).
+
+---
 
 ## END STATE:
 
-A FastAPI-based, modular, and maintainable track design engine that generates STL files for REA-standard bullhead rail track, including chairs and timbers, supported by an SQLModel-based SQLite database for flexible data management. The rail itself is intended to be added manually by the user after 3D printing.
+A FastAPI-based, modular, and maintainable track design engine capable of generating STL files for REA-standard bullhead rail track. This includes integrated timbers and chairs, with the rail added manually post-printing. The SQLModel-backed database ensures flexibility in track configurations, forming the foundation for future enhancements.
+
+---
 
 ## REFERENCES:
-https://github.com/Richard-Gnitnub/Templot5/blob/main/dxf_unit.pas
-https://fastapi.tiangolo.com/reference/templating/
+- [Templot GitHub Reference](https://github.com/Richard-Gnitnub/Templot5/blob/main/dxf_unit.pas)
+- [FastAPI Documentation](https://fastapi.tiangolo.com/reference/templating/)
+
+---
 
 ## NOTES:
 
 - Develop using Python 3.12.3 (latest version as of October 2023).
-- Attribution to Martin Wynne is essential to comply with GNU GPLv3.
+- Ensure proper attribution to Martin Wynne in compliance with GNU GPLv3.
+
 
 ---
 ## Core Application Functionality (MVP)
@@ -86,7 +120,7 @@ flowchart TD
     H -->|Save File| I[Provide Download Link]
     I -->|User Access| J[Download STL File]
 
-    subgraph Flask Workflow
+    subgraph FastAPI Workflow
         B --> C --> D --> F
     end
 
@@ -108,12 +142,12 @@ flowchart TD
     C -->|Yes| D[Fetch Advanced Data from Database]
     C -->|No| E[Return Error Message]
     D -->|Configurations Loaded| F[Process Advanced Geometry]
-    F -->|Generate Curves, Turnouts, and Snap-Fit Designs| G[Create Advanced 3D Model]
+    F -->|Generate Curves, Turnouts, and Alternate Track Types| G[Create Advanced 3D Model with CadQuery]
     G -->|Convert to STL| H[STL Export]
     H --> I[Inspect STL File]
     I -->|Check for Issues| J{Issues Found?}
     J -->|Yes| K[Generate Inspection Report]
-    K -->|User Opts to Repair| L[Run Mesh Repair]
+    K -->|User Opts to Repair| L[Run Mesh Repair Workflow]
     L --> M[Save Repaired STL File]
     J -->|No| N[Save Original STL File]
     M --> O[Provide Download Link]
