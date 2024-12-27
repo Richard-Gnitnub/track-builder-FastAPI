@@ -37,17 +37,17 @@ def dashboard(request: Request):
 @app.get("/admin/chairs", response_class=HTMLResponse)
 def chairs_table(request: Request):
     chairs = fetch_chairs_from_db()  # Replace with actual DB query
-    return templates.TemplateResponse("chairs_list.html", {"request": request, "chairs": chairs})
+    return templates.TemplateResponse("collections/chairs/chairs_list.html", {"request": request, "chairs": chairs})
 
 @app.get("/admin/timbers", response_class=HTMLResponse)
 def timbers_table(request: Request):
     timbers = fetch_timbers_from_db()  # Replace with actual DB query
-    return templates.TemplateResponse("timbers_list.html", {"request": request, "timbers": timbers})
+    return templates.TemplateResponse("collections/timbers/timbers_list.html", {"request": request, "timbers": timbers})
 
 @app.get("/admin/tracks", response_class=HTMLResponse)
 def tracks_table(request: Request):
     tracks = fetch_tracks_from_db()  # Replace with actual DB query
-    return templates.TemplateResponse("tracks_list.html", {"request": request, "tracks": tracks})
+    return templates.TemplateResponse("collections/tracks/tracks_list.html", {"request": request, "tracks": tracks})
 
 # About page route
 @app.get("/about", response_class=HTMLResponse)
