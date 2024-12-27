@@ -1,5 +1,6 @@
 from sqlmodel import SQLModel, Field, Relationship
 from typing import List, Optional
+from track_app.enums import ChairType
 
 class Timber(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
@@ -20,6 +21,8 @@ class Chair(SQLModel, table=True):
     jaw_height: Optional[float] = Field(default=None, description="Height of the chair jaw in mm")
     placement_offset: float = Field(..., description="Offset of the chair along the timber in mm")
     timber_id: Optional[int] = Field(default=None, foreign_key="timber.id")
+    track_id: Optional[int] = Field(default=None, foreign_key="track.id")
+    type: ChairType = Field(default=ChairType.S1, description="Type of the chair")
 
 class Track(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
