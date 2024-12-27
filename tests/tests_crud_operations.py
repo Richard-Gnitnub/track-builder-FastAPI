@@ -3,6 +3,7 @@ from track_app.models import Chair, Timber, Track
 from track_app.enums import ChairType  # Import the enumeration
 from track_app.database import SessionLocal
 
+
 @pytest.fixture
 def sample_chair():
     return {

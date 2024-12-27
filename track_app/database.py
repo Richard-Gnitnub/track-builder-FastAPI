@@ -1,16 +1,12 @@
-from sqlmodel import SQLModel, create_engine
-from sqlmodel import Session
+from sqlmodel import SQLModel, create_engine, Session
+from sqlalchemy.orm import sessionmaker
 
-# Define your database connection
 DATABASE_URL = "sqlite:///database.db"
 engine = create_engine(DATABASE_URL)
 
-def init_db():
-    # Create tables in the database
-    SQLModel.metadata.create_all(engine)
-
-
+# Create SessionLocal to handle sessions
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 def get_session():
-    with Session(engine) as session:
+    with SessionLocal() as session:
         yield session
