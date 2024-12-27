@@ -97,6 +97,7 @@ A FastAPI-based, modular, and maintainable track design engine capable of genera
 ## REFERENCES:
 - [Templot GitHub Reference](https://github.com/Richard-Gnitnub/Templot5/blob/main/dxf_unit.pas)
 - [FastAPI Documentation](https://fastapi.tiangolo.com/reference/templating/)
+- [Jinja](https://jinja.palletsprojects.com/en/stable/intro/)
 
 ---
 
