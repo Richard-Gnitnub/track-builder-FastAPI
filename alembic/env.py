@@ -6,6 +6,7 @@ from sqlalchemy import pool
 from alembic import context
 from sqlmodel import SQLModel
 from track_app.models import Track, Timber, Chair  # Import models from your project
+import sqlmodel
 
 # This is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
