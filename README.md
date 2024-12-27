@@ -36,16 +36,22 @@ Develop a lightweight Python-based application to design accurate model railway 
    - **Admin Panel**:
      - Provide CRUD operations for timbers, chairs, and track settings via a user-friendly web interface.
 
-3. **Design Elements**:
+3. **UI/UX Design**:
+   - Built using:
+     - **Jinja2**: Template rendering for dynamic HTML generation, supporting reusable components like navigation bars and footers.
+     - **HTMX**: Enables dynamic, lightweight interactions without full-page reloads, such as inline editing and table updates.
+     - **Bootstrap 5**: Provides responsive, mobile-friendly design and consistent styling for layouts, navigation, and tables.
+
+4. **Design Elements**:
    - **Timbers**: Base structure with configurable dimensions (length, width, depth, flanges).
    - **Chairs**: Integrated into timbers with configurable groove dimensions for rail fit.
    - **Rails**: Added manually by the user after 3D printing.
 
-4. **Validation**:
+5. **Validation**:
    - Ensure STL files are watertight and structurally sound.
    - Provide error feedback for invalid configurations or failed exports.
 
-5. **Excluded from MVP**:
+6. **Excluded from MVP**:
    - **Curved Tracks** and **Turnouts**: Deferred for future enhancements.
    - **Mesh Inspection and Repair**: Planned for post-MVP development.
 
