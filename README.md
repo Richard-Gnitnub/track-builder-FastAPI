@@ -139,9 +139,8 @@ project/
 │   ├── __init__.py
 │   ├── main.py              # FastAPI entry point
 │   ├── database.py          # Database connection and session
-│   ├── models.py            # Database models (or split into models/)
+│   ├── models.py            # SQLModel definitions
 │   ├── routes/              # Modular route files
-│   │   ├── rail_routes.py
 │   │   ├── chair_routes.py
 │   │   ├── track_routes.py
 │   │   ├── timber_routes.py
@@ -153,16 +152,22 @@ project/
 │   ├── templates/           # HTML templates
 │   │   ├── base.html
 │   │   ├── admin_dashboard.html
-│   │   ├── rails_list.html
-│   │   ├── rails_form.html
 │   │   ├── chairs_list.html
 │   │   ├── chairs_form.html
+│   │   ├── tracks_list.html
+│   │   ├── tracks_form.html
 │   │   ├── ...
+│   ├── database.db          # SQLite database file (moved here)
+├── alembic/                 # Alembic migrations
+│   ├── versions/            # Migration scripts
+│   ├── env.py               # Alembic environment file
+│   ├── script.py.mako       # Migration script template
+│   └── alembic.ini          # Alembic configuration file (root reference)
 ├── requirements.txt         # Project dependencies
 ├── README.md                # Documentation
 ├── Dockerfile               # Docker configuration
 ├── docker-compose.yml       # Docker Compose
-└── .gitignore               # Git ignore file
+└── .gitignore               # Files and folders to ignore
 
 ```
 ---
