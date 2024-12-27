@@ -191,24 +191,35 @@ project/
 │   │   ├── js/
 │   │   ├── img/
 │   ├── templates/           # HTML templates
-│   │   ├── base.html
-│   │   ├── admin_dashboard.html
-│   │   ├── chairs_list.html
-│   │   ├── chairs_form.html
-│   │   ├── tracks_list.html
-│   │   ├── tracks_form.html
-│   │   ├── ...
-│   ├── database.db          # SQLite database file (moved here)
-├── alembic/                 # Alembic migrations
+│   │   ├── components/      # Shared layout components
+│   │   │   ├── navbar.html
+│   │   │   ├── footer.html
+│   │   ├── collections/     # Feature-specific CRUD templates
+│   │   │   ├── chairs/
+│   │   │   │   ├── chairs_list.html
+│   │   │   │   ├── chairs_form.html
+│   │   │   ├── timbers/
+│   │   │   │   ├── timbers_list.html
+│   │   │   │   ├── timbers_form.html
+│   │   │   ├── tracks/
+│   │   │   │   ├── tracks_list.html
+│   │   │   │   ├── tracks_form.html
+│   │   ├── landing_page.html
+│   │   ├── dashboard.html
+│   │   ├── about.html
+│   │   ├── contact.html
+│   ├── database.db          # SQLite database file
+├── alembic/                 # Alembic migrations (optional)
 │   ├── versions/            # Migration scripts
 │   ├── env.py               # Alembic environment file
 │   ├── script.py.mako       # Migration script template
-│   └── alembic.ini          # Alembic configuration file (root reference)
+│   └── alembic.ini          # Alembic configuration file
 ├── requirements.txt         # Project dependencies
 ├── README.md                # Documentation
 ├── Dockerfile               # Docker configuration
 ├── docker-compose.yml       # Docker Compose
 └── .gitignore               # Files and folders to ignore
+
 
 ```
 ---
