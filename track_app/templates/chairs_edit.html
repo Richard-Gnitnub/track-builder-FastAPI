@@ -1,0 +1,6 @@
+<form hx-post="/admin/chairs/{{ chair.id }}" hx-target="#chair-{{ chair.id }}" hx-swap="outerHTML">
+    <input type="number" name="slot_depth" value="{{ chair.slot_depth }}" required>
+    <input type="number" name="slot_width" value="{{ chair.slot_width }}" required>
+    <input type="number" name="tolerance" value="{{ chair.tolerance }}" required>
+    <button type="submit" class="btn btn-primary btn-sm">Save</button>
+</form>

@@ -1,0 +1,36 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Slot Depth</th>
+            <th>Slot Width</th>
+            <th>Tolerance</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for chair in chairs %}
+        <tr id="chair-{{ chair.id }}">
+            <td>{{ chair.id }}</td>
+            <td>
+                <span hx-get="/admin/chairs/{{ chair.id }}/edit" hx-target="#chair-slot-depth-{{ chair.id }}" hx-swap="outerHTML">
+                    {{ chair.slot_depth }}
+                </span>
+            </td>
+            <td>
+                <span hx-get="/admin/chairs/{{ chair.id }}/edit" hx-target="#chair-slot-width-{{ chair.id }}" hx-swap="outerHTML">
+                    {{ chair.slot_width }}
+                </span>
+            </td>
+            <td>
+                <span hx-get="/admin/chairs/{{ chair.id }}/edit" hx-target="#chair-tolerance-{{ chair.id }}" hx-swap="outerHTML">
+                    {{ chair.tolerance }}
+                </span>
+            </td>
+            <td>
+                <button class="btn btn-sm btn-danger" hx-delete="/admin/chairs/{{ chair.id }}" hx-target="#chair-{{ chair.id }}" hx-swap="delete">Delete</button>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Dashboard</h1>
+</div>
+
+<!-- Tabs -->
+<ul class="nav nav-tabs" id="dashboardTabs" role="tablist">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="chairs-tab" data-bs-toggle="tab" data-bs-target="#chairs" type="button" role="tab">
+            Chairs
+        </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="timbers-tab" data-bs-toggle="tab" data-bs-target="#timbers" type="button" role="tab">
+            Timbers
+        </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="tracks-tab" data-bs-toggle="tab" data-bs-target="#tracks" type="button" role="tab">
+            Tracks
+        </button>
+    </li>
+</ul>
+
+<div class="tab-content mt-4" id="dashboardTabContent">
+    <!-- Chairs Tab -->
+    <div class="tab-pane fade show active" id="chairs" role="tabpanel">
+        <div id="chairs-content" hx-get="/admin/chairs" hx-target="#chairs-content" hx-swap="outerHTML">
+            <!-- Chairs table will dynamically load here -->
+        </div>
+    </div>
+
+    <!-- Timbers Tab -->
+    <div class="tab-pane fade" id="timbers" role="tabpanel">
+        <div id="timbers-content" hx-get="/admin/timbers" hx-target="#timbers-content" hx-swap="outerHTML">
+            <!-- Timbers table will dynamically load here -->
+        </div>
+    </div>
+
+    <!-- Tracks Tab -->
+    <div class="tab-pane fade" id="tracks" role="tabpanel">
+        <div id="tracks-content" hx-get="/admin/tracks" hx-target="#tracks-content" hx-swap="outerHTML">
+            <!-- Tracks table will dynamically load here -->
+        </div>
+    </div>
+</div>
+{% endblock %}
