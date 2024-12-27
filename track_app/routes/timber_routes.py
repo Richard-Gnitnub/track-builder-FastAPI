@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, Depends
 from sqlmodel import Session, select
-from app.database import get_session
-from app.models import Timber
+from track_app.database import get_session
+from track_app.models import Timber
 
 router = APIRouter()
 

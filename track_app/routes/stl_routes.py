@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, Depends
 from sqlmodel import Session
 from track_app.database import get_session
-from track_app.models import StraightTrack
+from track_app.models import Track
 from track_app.stl_generator import generate_stl_file  # Assuming a separate module for STL logic
 
 router = APIRouter()

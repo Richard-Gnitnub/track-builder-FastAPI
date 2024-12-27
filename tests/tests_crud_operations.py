@@ -1,6 +1,6 @@
 import pytest
 from fastapi.testclient import TestClient
-from main import app  # Ensure the app is properly imported
+from track_app.main import app # Ensure the app is properly imported
 
 client = TestClient(app)
 
