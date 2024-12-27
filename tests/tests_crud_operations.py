@@ -1,8 +1,11 @@
 import pytest
-from track_app.models import Chair, Timber, Track
-from track_app.enums import ChairType  # Import the enumeration
-from track_app.database import SessionLocal
+from fastapi.testclient import TestClient
+from track_app.main import app
+from track_app.enums import ChairType  # Only keep if actually needed in tests
 
+@pytest.fixture
+def client():
+    return TestClient(app)
 
 @pytest.fixture
 def sample_chair():
@@ -15,7 +18,7 @@ def sample_chair():
         "placement_offset": 10.0,
         "timber_id": 1,
         "track_id": 1,
-        "type": ChairType.S1.value  # Use the enumeration value
+        "type": ChairType.S1.value
     }
 
 @pytest.fixture

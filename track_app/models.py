@@ -1,33 +1,43 @@
-from sqlmodel import SQLModel, Field, Relationship
+from sqlmodel import SQLModel, Field, Relationship, Session, select
 from typing import List, Optional
 from track_app.enums import ChairType
+# track_app/models.py
 
 class Timber(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
-    length: float = Field(..., description="Length of the timber in mm")
-    width: float = Field(..., description="Width of the timber in mm")
-    depth: float = Field(..., description="Depth of the timber in mm")
-    flange_width: Optional[float] = Field(default=None, description="Width of the flange in mm")
-    flange_depth: Optional[float] = Field(default=None, description="Depth of the flange in mm")
-    position: float = Field(..., description="Position of the timber along the track")
+    length: float
+    width: float
+    depth: float
+    flange_width: Optional[float] = None
+    flange_depth: Optional[float] = None
+    position: float
     track_id: Optional[int] = Field(default=None, foreign_key="track.id")
+
+    # Add this relationship so "timbers" <-> "track" match
+    track: Optional["Track"] = Relationship(back_populates="timbers")
+
 
 class Chair(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
-    groove_width: float = Field(..., description="Width of the groove for the rail foot in mm")
-    groove_depth: float = Field(..., description="Depth of the groove for the rail foot in mm")
-    fit_adjustment: Optional[float] = Field(default=0.0, description="Adjustment for printing tolerances in mm")
-    rib_spacing: Optional[float] = Field(default=None, description="Spacing between ribs on the chair")
-    jaw_height: Optional[float] = Field(default=None, description="Height of the chair jaw in mm")
-    placement_offset: float = Field(..., description="Offset of the chair along the timber in mm")
+    groove_width: float
+    groove_depth: float
+    fit_adjustment: Optional[float] = 0.0
+    rib_spacing: Optional[float] = None
+    jaw_height: Optional[float] = None
+    placement_offset: float
     timber_id: Optional[int] = Field(default=None, foreign_key="timber.id")
     track_id: Optional[int] = Field(default=None, foreign_key="track.id")
-    type: ChairType = Field(default=ChairType.S1, description="Type of the chair")
+    type: ChairType = Field(default=ChairType.S1)
+
+    # Add this relationship so "chairs" <-> "track" match
+    track: Optional["Track"] = Relationship(back_populates="chairs")
+
 
 class Track(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
-    total_length: float = Field(..., description="Total length of the track in mm")
-    timber_spacing: float = Field(..., description="Spacing between timbers in mm")
-    chair_alignment: str = Field(..., description="Alignment pattern for chairs (e.g., 'opposite', 'staggered')")
-    timbers: List[Timber] = Relationship(back_populates="track")
-    chairs: List[Chair] = Relationship(back_populates="track")
+    total_length: float
+    timber_spacing: float
+    chair_alignment: str
+
+    timbers: List["Timber"] = Relationship(back_populates="track")
+    chairs: List["Chair"] = Relationship(back_populates="track")

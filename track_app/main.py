@@ -11,6 +11,11 @@ from track_app.routes.stl_routes import router as stl_router
 
 app = FastAPI()
 
+@app.on_event("startup")
+def on_startup():
+    # Make sure tables exist
+    init_db()
+
 # Set up Jinja2 templates
 templates = Jinja2Templates(directory="track_app/templates")
 

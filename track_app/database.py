@@ -10,3 +10,6 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 def get_session():
     with SessionLocal() as session:
         yield session
+
+def init_db():
+    SQLModel.metadata.create_all(engine)
